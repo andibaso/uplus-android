@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 and Confidential to Pegasystems Inc. All rights reserved.
+  -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F2F2F2"
+                android:clickable="true">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mainWrapper">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:id="@+id/innerWrapper">
+            <TextView
+                    android:text="Hi, "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:id="@+id/hiName"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                    android:layout_marginBottom="8dp"
+            />
+            <TextView
+                    android:text="@string/dispute_mtod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/getStartedMTOD"
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="8sp"/>
+            <include layout="@layout/orange_button"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:layout_gravity="center"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginBottom="16dp"
+            />
+
+            <TextView
+                    android:text="@string/lost_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/lostCard"
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="8sp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <com.pega.mobile.webview.HybridWebView
+            android:id="@+id/webView"
+            custom:name="Pega7"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:visibility="invisible"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:background="#55000000"
+                    android:id="@+id/progressWrapper">
+        <ProgressBar
+                android:id="@+id/progressSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:indeterminateTint="@android:color/holo_blue_dark"
+        />
+    </RelativeLayout>
+</RelativeLayout>

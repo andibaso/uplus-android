@@ -1,0 +1,16 @@
+def readAndroidProperties(androidPropertiesPath){
+    if (!parent.hasProperty("androidCompileSdkVersion")) {
+        Properties prop = new Properties()
+        prop.load(new FileInputStream(androidPropertiesPath))
+        parent.ext.androidBuildToolsVersion = "${prop.get("android.buildToolsVersion")}"
+        parent.ext.androidMinSdkVersion = Integer.valueOf(prop.get("android.minSdkVersion"))
+        parent.ext.androidTargetSdkVersion = Integer.valueOf(prop.get("android.targetSdkVersion"))
+        parent.ext.androidCompileSdkVersion = Integer.valueOf(prop.get("android.compileSdkVersion"))
+        parent.ext.androidAbiFilters = "${prop.get("android.abiFilters")}".split(',')*.trim() as String[]
+    }
+}
+
+// Export methods by turning them into closures
+ext {
+    readAndroidProperties = this.&readAndroidProperties
+}

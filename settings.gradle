@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2014 and Confidential to Pegasystems Inc. All rights reserved.
+ */
+
+def androidSDK = System.getenv("ANDROID_HOME")
+if (androidSDK == null) {
+    Properties properties = new Properties()
+    try {
+        properties.load(new FileInputStream('local.properties'))
+        androidSDK = properties.getProperty('sdk.dir')
+    } catch(all){}
+}
+if (androidSDK != null) {
+include ":app"
+    try {
+        // Custom modules with sources
+        new File("modules").eachFile() {
+            file -> if (file.isDirectory()) {
+                File buildFile = new File("${file.getPath()}/build.gradle")
+                if (buildFile.exists()) {
+                    include ":modules:${file.getName()}"
+                }
+            }
+        }
+    } catch(all){}
+} else {
+    println "Neither ANDROID_HOME environment variable nor sdk.dir local property is specified."
+}

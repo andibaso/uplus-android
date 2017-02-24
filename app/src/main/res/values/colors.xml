@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2014 and Confidential to Pegasystems Inc. All rights reserved.
+  -->
+
+<resources>
+    <color name="appSwitcherBackground">#c1c1c1</color>
+    <color name="semiTransparent">#88FFFFFF</color>
+    <color name="description">#aaaaaa</color>
+</resources>

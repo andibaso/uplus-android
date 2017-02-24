@@ -1,0 +1,88 @@
+/*
+ * Copyright (c) 2014 and Confidential to Pegasystems Inc. All rights reserved.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'pluginDetector'
+
+buildscript {
+    dependencies {
+        classpath "com.pega.commontools:plugin-detector:${commontoolsVersion}"
+    }
+    apply from: "$rootDir/androidPropertiesLoader.gradle"
+    readAndroidProperties("$rootDir/android.properties")
+}
+// Android Plugin configuration.
+// Caution: this section is auto-managed by Customization Tool.
+android {
+    buildToolsVersion androidBuildToolsVersion
+    compileSdkVersion androidCompileSdkVersion
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    defaultConfig {
+        applicationId "com.pega.uplus.exchange.android"
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+    signingConfigs {
+        release {
+            storeFile file(project.storeFile)
+            storePassword project.storePassword
+            keyAlias project.keyAlias
+            keyPassword project.keyPassword
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            ndk {
+                abiFilters androidAbiFilters
+            }
+        }
+        debug {
+            ndk {
+                abiFilters androidAbiFilters
+            }
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+        dexInProcess false
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+    }
+    buildToolsVersion '25.0.2'
+}
+
+// Dependencies configuration.
+// Caution: this section is auto-managed by Customization Tool.
+dependencies {
+    //this must be added for mashup
+    provided 'com.squareup.dagger:dagger-compiler:1.2.2.vol1'
+
+    compile "com.pega:base:${project.modulesVersion}"
+    compile "com.pega:authentication:${project.modulesVersion}"
+    compile "com.pega:documentPicker:${project.modulesVersion}"
+    compile "com.pega:filesystem:${project.modulesVersion}"
+    compile "com.pega:fileTransfer:${project.modulesVersion}"
+
+    //for demo app, not needed for mashup
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:support-v13:25.1.0'
+    compile('com.android.support:design:25.1.0'){
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v13'
+    }
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.android.support:cardview-v7:25.1.0'
+}

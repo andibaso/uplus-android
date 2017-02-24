@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="16dp"
+              android:layout_marginEnd="16dp"
+              android:layout_marginLeft="16dp"
+              android:layout_marginStart="16dp"
+              android:paddingTop="8dp"
+              android:paddingBottom="8dp"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:background="#FFFFFF"
+              android:minHeight="54dp"
+              android:gravity="center_vertical"
+              android:id="@+id/transactionItem"
+>
+    <TextView
+            android:id="@+id/itemKey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:textSize="16sp"
+            android:text="@string/date"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@android:color/black"/>
+    <TextView
+            android:id="@+id/itemValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="0.6"
+            android:gravity="end"
+            tools:text="Monday, May 30, 2016"
+    />
+</LinearLayout>
